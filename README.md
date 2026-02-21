@@ -1,4 +1,4 @@
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4aa8e5d6-739e-42f5-8bff-5c674b84c110" />Simon Says Game 🎮 | Horror-themed memory game with localStorage persistence. Watch patterns, repeat sequences, survive jump scares! Features high scores, game state recovery, responsive design & creepy visuals. Built with vanilla JS, CSS animations. Perfect for spooky season coding fun! 👻
+Simon Says Game 🎮 | Horror-themed memory game with localStorage persistence. Watch patterns, repeat sequences, survive jump scares! Features high scores, game state recovery, responsive design & creepy visuals. Built with vanilla JS, CSS animations. Perfect for spooky season coding fun! 👻
 
 README.md
 markdown
@@ -6,8 +6,8 @@ markdown
 
 A terrifying twist on the classic memory game! Watch the pattern, repeat the sequence, and try to survive... if you dare! Features jump scares, persistent game state, and high score tracking.
 
-![Game Screenshot](screenshot.png)
-
+![Game Screenshot]
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4aa8e5d6-739e-42f5-8bff-5c674b84c110" />
 ## 🎮 Features
 
 - **Classic Simon Gameplay** - Watch and repeat growing sequences
