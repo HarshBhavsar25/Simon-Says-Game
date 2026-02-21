@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>👻 SIMON · HORROR EDITION 👻</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Simon Says Game</h1>
+    <h2>Press any key to start the game</h2>
+    
+    <div class="score-board">
+        <div class="score-card">
+            <span>Current: <span id="current-score">0</span></span>
+        </div>
+        <div class="score-card">
+            <span>🏆 High Score: <span id="high-score">0</span></span>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="restart-btn" class="control-btn">🔄 Restart</button>
+        <button id="resume-btn" class="control-btn" style="display: none;">⏯️ Resume Game</button>
+    </div>
+
+    <div class="container">
+        <div class="box red" type="button" id="red"></div>
+        <div class="box yellow" type="button" id="yellow"></div>
+        <div class="box green" type="button" id="green"></div>
+        <div class="box purple" type="button" id="purple"></div>
+    </div>
+
+    <div class="instructions">
+        <p>Watch the pattern, then repeat it!</p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

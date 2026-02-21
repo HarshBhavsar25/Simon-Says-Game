@@ -1,0 +1,263 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(145deg, #0b0c1e 0%, #1a1e30 100%);
+    font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0.5rem;
+    transition: background-color 0.2s;
+    margin: 0;
+}
+
+body.game-lose {
+    background: #1a0000;
+    position: relative;
+}
+
+body.game-lose::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('jumpscare.gif');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 999;
+    animation: flicker 0.3s infinite;
+}
+
+@keyframes flicker {
+    0% { opacity: 0.6; }
+    50% { opacity: 0.9; }
+    100% { opacity: 0.6; }
+}
+
+h1, h2 {
+    text-align: center;
+    transition: all 0.3s ease;
+    max-width: 90vw;
+}
+
+h1 {
+    font-size: clamp(2.2rem, 10vw, 3.8rem);
+    color: #ffe4c4;
+    text-shadow: 0 0 5px #b86f6f, 0 0 15px crimson;
+    letter-spacing: 2px;
+    margin-bottom: 0.25rem;
+    position: relative;
+    z-index: 1000;
+}
+
+h2 {
+    font-size: clamp(1.2rem, 5vw, 2rem);
+    color: #b0c4de;
+    font-weight: 400;
+    background: rgba(0,0,0,0.3);
+    padding: 0.5rem 1.5rem;
+    border-radius: 60px;
+    backdrop-filter: blur(3px);
+    margin: 0.5rem auto 1.5rem auto;
+    width: fit-content;
+    border: 1px solid #4a3f5e;
+    position: relative;
+    z-index: 1000;
+}
+
+.score-board {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem 0 1rem 0;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1000;
+}
+
+.score-card {
+    background: rgba(20, 15, 30, 0.8);
+    backdrop-filter: blur(4px);
+    padding: 0.6rem 1.8rem;
+    border-radius: 40px;
+    border: 1px solid #6b4f7c;
+    box-shadow: 0 0 15px #ff3838;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #fadfad;
+    letter-spacing: 1px;
+}
+
+#high-score {
+    color: gold;
+    text-shadow: 0 0 5px orange;
+}
+
+#current-score {
+    color: #88ff88;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0 1.5rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1000;
+}
+
+.control-btn {
+    background: #2a223a;
+    border: 2px solid #a76283;
+    color: #f0d5ff;
+    font-size: 1.3rem;
+    padding: 0.6rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: 0.2s;
+    box-shadow: 0 0 10px #b93e9b;
+    backdrop-filter: blur(5px);
+}
+
+.control-btn:hover {
+    background: #4a2e5e;
+    transform: scale(1.03);
+    border-color: #ff7b9c;
+    box-shadow: 0 0 20px #ff66b2;
+}
+
+.control-btn:active {
+    transform: scale(0.97);
+}
+
+.container {
+    display: flex;
+    width: min(85vw, 500px);
+    aspect-ratio: 1 / 1;
+    max-width: 500px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 1rem auto;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 1000;
+}
+
+.box {
+    width: 45%;
+    aspect-ratio: 1 / 1;
+    border-radius: 20%;
+    border: 4px solid #1a1122;
+    opacity: 1;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    box-shadow: 0 8px 0 #1e1528, 0 12px 20px black;
+}
+
+.box:active {
+    transform: scale(0.96);
+    box-shadow: 0 2px 0 #1e1528, 0 8px 15px black;
+}
+
+.yellow {
+    background-color: #f99b45;
+}
+
+.red {
+    background-color: #d95980;
+}
+
+.purple {
+    background-color: #819ff9;
+}
+
+.green {
+    background-color: #63aac0;
+}
+
+.flash {
+    background-color: white !important;
+    box-shadow: 0 0 35px white;
+    transition: 0.05s;
+}
+
+.userflash {
+    background-color: #a3ff9f !important;
+    box-shadow: 0 0 35px #7eff6e;
+}
+
+.game-lose .container {
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.horror-msg {
+    font-family: 'Creepster', cursive;
+    color: darkred;
+    font-size: 60px;
+    text-shadow: 0 0 20px red, 0 0 40px black;
+    animation: shake 0.2s infinite;
+    position: relative;
+    z-index: 1000;
+}
+
+@keyframes shake {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-3px, 2px); }
+    50% { transform: translate(3px, -2px); }
+    75% { transform: translate(-1px, -1px); }
+    100% { transform: translate(0, 0); }
+}
+
+.instructions {
+    margin-top: 2rem;
+    color: #a28fb1;
+    font-size: 1.1rem;
+    text-align: center;
+    background: rgba(0,0,0,0.4);
+    padding: 0.5rem 1.8rem;
+    border-radius: 30px;
+    backdrop-filter: blur(2px);
+    position: relative;
+    z-index: 1000;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media (max-width: 500px) {
+    .score-card {
+        font-size: 1.1rem;
+        padding: 0.3rem 1rem;
+    }
+    
+    .control-btn {
+        font-size: 1rem;
+        padding: 0.4rem 1.2rem;
+    }
+    
+    h2 {
+        font-size: 1rem;
+    }
+    
+    .horror-msg {
+        font-size: 40px;
+    }
+}
