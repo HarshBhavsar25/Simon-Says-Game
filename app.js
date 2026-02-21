@@ -10,8 +10,23 @@ const h1 = document.querySelector('h1');
 const container = document.querySelector('.container');
 const currentScoreSpan = document.getElementById('current-score');
 const highScoreSpan = document.getElementById('high-score');
+const startBtn = document.getElementById('start-btn');
 const restartBtn = document.getElementById('restart-btn');
 const resumeBtn = document.getElementById('resume-btn');
+
+function isMobile() {
+    return window.innerWidth <= 768 || ('ontouchstart' in window);
+}
+
+function updateUIMessages() {
+    if (!started) {
+        if (isMobile()) {
+            h2.innerText = 'Tap "Start Game" to begin';
+        } else {
+            h2.innerText = 'Press any key to start the game';
+        }
+    }
+}
 
 function loadSavedGame() {
     const saved = localStorage.getItem('simonHorror');
@@ -28,6 +43,8 @@ function loadSavedGame() {
             }
             started = true;
             userSeq = [];
+            startBtn.style.display = 'none';
+            restartBtn.style.display = 'inline-block';
             resumeBtn.style.display = 'inline-block';
             h2.innerText = `⏸️ Saved at level ${level} — press resume or restart`;
             return true;
@@ -118,7 +135,7 @@ function checkAns(idx) {
             setTimeout(levelUp, 800);
         }
     } else {
-        h2.innerHTML = `💀 GAME OVER 💀 <br> Your score: <b>${level}</b> <br> Press any key / restart`;
+        h2.innerHTML = `💀 GAME OVER 💀 <br> Your score: <b>${level}</b> <br> Tap Restart to play again`;
         displayHorror();
 
         if (level > highScore) {
@@ -161,8 +178,12 @@ function resetGame() {
     userSeq = [];
     level = 0;
     updateCurrentScore();
-    h2.innerHTML = `Press any key or Restart to begin`;
+    updateUIMessages();
     clearSavedGame();
+    
+    startBtn.style.display = 'inline-block';
+    restartBtn.style.display = 'none';
+    resumeBtn.style.display = 'none';
 }
 
 function freshStart() {
@@ -171,6 +192,11 @@ function freshStart() {
     gameSeq = [];
     userSeq = [];
     clearSavedGame();
+    
+    startBtn.style.display = 'none';
+    restartBtn.style.display = 'inline-block';
+    resumeBtn.style.display = 'none';
+    
     setTimeout(() => {
         levelUp();
     }, 10);
@@ -190,9 +216,13 @@ function resumeSavedGame() {
             level = data.level;
             started = true;
             userSeq = [];
+            
+            startBtn.style.display = 'none';
+            restartBtn.style.display = 'inline-block';
+            resumeBtn.style.display = 'none';
+            
             h2.innerText = `Resumed at level ${level} — repeat the pattern`;
             playPatternSlowly();
-            resumeBtn.style.display = 'none';
         } else {
             resumeBtn.style.display = 'none';
         }
@@ -216,15 +246,14 @@ function playPatternSlowly() {
 }
 
 document.addEventListener('keypress', function (e) {
-    if (!started) {
+    if (!started && !isMobile()) {
         freshStart();
     }
 });
 
-const allBtns = document.querySelectorAll('.box');
-for (let btn of allBtns) {
-    btn.addEventListener('click', btnPress);
-}
+startBtn.addEventListener('click', function () {
+    freshStart();
+});
 
 restartBtn.addEventListener('click', function () {
     freshStart();
@@ -234,17 +263,31 @@ resumeBtn.addEventListener('click', function () {
     resumeSavedGame();
 });
 
+const allBtns = document.querySelectorAll('.box');
+for (let btn of allBtns) {
+    btn.addEventListener('click', btnPress);
+}
+
 window.addEventListener('load', function () {
     loadHighScoreOnly();
     const hasSave = loadSavedGame();
     if (!hasSave) {
-        h2.innerText = 'Press any key to start the game';
+        updateUIMessages();
+        startBtn.style.display = 'inline-block';
+        restartBtn.style.display = 'none';
+        resumeBtn.style.display = 'none';
     }
     updateCurrentScore();
+});
+
+window.addEventListener('resize', function () {
+    if (!started) {
+        updateUIMessages();
+    }
 });
 
 window.addEventListener('beforeunload', function () {
     if (started && level > 0) {
         saveGame();
     }
-});
+}); 
