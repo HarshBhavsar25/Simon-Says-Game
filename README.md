@@ -8,6 +8,8 @@ A terrifying twist on the classic memory game! Watch the pattern, repeat the seq
 
 ![Game Screenshot]
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4aa8e5d6-739e-42f5-8bff-5c674b84c110" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1be64078-1891-4bc1-8f8b-37d2a66b6719" />
+
 ## 🎮 Features
 
 - **Classic Simon Gameplay** - Watch and repeat growing sequences
